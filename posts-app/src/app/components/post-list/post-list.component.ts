@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService, Post } from '../../services/post.service';
-import { Observable } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-list',
@@ -11,12 +11,25 @@ export class PostListComponent implements OnInit {
   posts: Post[] = [];
   isLoading = true;
 
-  constructor(private postService: PostService) { }
+  constructor(
+    private postService: PostService,
+    public snackBar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
-    this.postService.getPosts().subscribe((posts) => {
-      this.posts = posts;
-      this.isLoading = false;
+    this.postService.getPosts().subscribe({
+      next: (posts) => {
+        this.posts = posts;
+      },
+      complete: () => {
+        this.isLoading = false;
+      },
+      error: (error) => {
+        this.snackBar.open(error.message, 'error', {
+          duration: 2000,
+        });
+        this.isLoading = false;
+      }
     });
   }
 }

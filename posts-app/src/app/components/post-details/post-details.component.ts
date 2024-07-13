@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { PostService, Post } from '../../services/post.service';
 import { Location } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-details',
@@ -15,7 +16,8 @@ export class PostDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private postService: PostService, 
-    private location: Location) { 
+    private location: Location,
+    public snackBar: MatSnackBar) { 
 
     }
 
@@ -26,6 +28,11 @@ export class PostDetailsComponent implements OnInit {
         this.post = post;
         this.isLoading = false;
       });
+    } else {
+      this.snackBar.open('Error loading post details', 'error', {
+        duration: 2000,
+      });
+      this.isLoading = false;
     }
   }
 
