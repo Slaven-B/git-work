@@ -1,0 +1,9 @@
+.card-wrap {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-gap: 0.5rem;
+}
+
+.example-card {
+    max-width: 400px;
+}
