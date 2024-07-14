@@ -20,7 +20,20 @@
     &-actions {
         border-top: 1px solid #434343;
         margin: 1rem 0 0 0;
-        justify-content: flex-end;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(0, auto));
+        
+        &-right {
+            justify-self: flex-end;
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        &-left {
+            justify-self: flex-start;
+            display: flex;
+            gap: 0.5rem;
+        }
 
         button {
             background-color: #08c;
@@ -34,6 +47,15 @@
             &:hover {
                 background-color: #999;
             }
+
+            &:disabled {
+                opacity: 0.4;
+                background-color: #999;
+            }
         }
+    }
+
+    p {
+        min-height: 240px;
     }
 }

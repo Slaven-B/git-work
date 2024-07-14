@@ -11,7 +11,13 @@
                 <p>{{ post.body }}</p>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button type="button" (click)="goBack()">Go Back</button>
+                <div class="mat-mdc-card-actions-left">
+                    <button mat-button type="button" (click)="goPrev()"  [disabled]="currentIndex <= 0">&lt;</button>
+                    <button mat-button type="button" (click)="goNext()" [disabled]="currentIndex >= posts.length - 1">&gt;</button>
+                </div>
+                <div  class="mat-mdc-card-actions-right">
+                    <button mat-button type="button" (click)="goBack()">Go Back</button>
+                </div>
             </mat-card-actions>
         </mat-card>
     </ng-container>
