@@ -7,3 +7,30 @@
 .example-card {
     max-width: 400px;
 }
+
+.mat-mdc-list-item {
+    span.index {
+        background-color: #3b3a3a;
+        border-radius: 100%;
+        display: flex;
+        width: 24px;
+        height: 24px;
+        justify-content: center;
+        float: left;
+        margin: 0 1rem 0 0;
+        font-size: 12px;
+        color: #ccc;
+    }
+}
+
+.mat-divider {
+    border-top-color: #3b3a3a;
+}
+
+.search-input {
+    justify-self: flex-end;
+    height: 32px;
+    padding: 0 1rem;
+    border-radius: 4px;
+    border: none;
+}

@@ -11,6 +11,9 @@ export class PostListComponent implements OnInit {
   posts: Post[] = [];
   isLoading = true;
 
+  filteredPosts: Post[] = [];
+  searchQuery: string = '';
+
   constructor(
     private postService: PostService,
     public snackBar: MatSnackBar
@@ -20,6 +23,7 @@ export class PostListComponent implements OnInit {
     this.postService.getPosts().subscribe({
       next: (posts) => {
         this.posts = posts;
+        this.filteredPosts = posts;
       },
       complete: () => {
         this.isLoading = false;
@@ -31,5 +35,10 @@ export class PostListComponent implements OnInit {
         this.isLoading = false;
       }
     });
+  }
+
+  filterPosts(): void {
+    const query = this.searchQuery.toLowerCase();
+    this.filteredPosts = this.posts.filter(post => post.title.toLowerCase().includes(query));
   }
 }
